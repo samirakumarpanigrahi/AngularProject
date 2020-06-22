@@ -1,0 +1,47 @@
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.top {
+    margin-bottom: 80px;
+    margin-top: 20px
+}
+
+.top button,
+.top section {
+    float: left;
+}
+
+.top button {
+    margin-left: 50px;
+}
+
+.example-section {
+    /* float: left; */
+    margin-left: 50px;
+    display: inline;
+    align-content: center;
+    align-items: center;
+    /* height: 60px; */
+}
+
+.example-margin {
+    margin: 0 10px;
+}
+
+.example-card {
+    margin-top: 50px;
+    align-content: center;
+    margin: 15px;
+}
+
+
+/* td,
+th {
+    width: 25%;
+} */

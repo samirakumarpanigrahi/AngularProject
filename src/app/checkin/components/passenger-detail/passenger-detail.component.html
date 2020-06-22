@@ -1,0 +1,52 @@
+<!-- <button mat-raised-button color="accent" (click)="selectedFlight()">Flight Detail</button> -->
+<div class="row">
+    <div class="col">
+        <mat-card class="example-card">
+            <mat-card-header>
+
+                <mat-card-title>Name : <strong>{{passenger?.customername}}</strong></mat-card-title>
+                <mat-card-subtitle> Category : <strong>{{passenger?.category}}</strong></mat-card-subtitle>
+                <mat-card-subtitle> AncillayService : <strong>{{passenger?.ancillayService}}</strong></mat-card-subtitle>
+                <mat-card-subtitle> Seat No : <strong>{{passenger?.seatno}}</strong></mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-actions>
+
+                <button mat-raised-button color="accent" (click)="checkSeat()">Change Seat</button>
+                <button mat-raised-button color="accent" (click)="checkIn()">CheckIn</button>
+
+
+            </mat-card-actions>
+        </mat-card>
+
+        <mat-card class="example-card" *ngIf="isChangeSeat">
+            <mat-card-header>
+
+                <mat-form-field>
+                    <mat-label>Select Seat</mat-label>
+                    <mat-select [(ngModel)]="updateedSeat" name="seat">
+                        <mat-option *ngFor="let seat of reaminingSeat" [value]="seat">
+                            {{seat}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </mat-card-header>
+
+
+            <mat-card-actions>
+                <button mat-raised-button color="accent" (click)="changeSeat()">Change</button>
+                <button mat-raised-button color="accent" (click)="changeCancel()">Cancel</button>
+
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <div class="col" *ngIf="!isChangeSeat">
+
+        <!-- <app-seat-book [seatsLayout]="seatsLayout" (trial)="getTrial($event)"> </app-seat-book> -->
+
+        <app-seat-lay-out [seatsLayout]="seatsLayout" [flight]="flight" [type]='seatBook' (trial)="getTrial($event)"></app-seat-lay-out>
+        <router-outlet></router-outlet>
+
+    </div>
+</div>

@@ -1,5 +1,44 @@
 # FlightProject
 
+........................................................
+For Airstaff
+UserId:samir,
+Password:samir
+
+For Admin
+UserId:mindtree,
+Password:mindtree
+
+->Checkin
+There are upcoming flights 
+Click the flight detail
+For checkin click in passenger row
+Click the respective seat and click checkin button to checkin
+If you are already checkin click the respective seat and click checkin button to undo checkin
+Click the seat change to change seat
+../
+click on layout to see the flight seat detail
+
+->Inflight
+There are ongoing flights 
+Click the flight detail
+Click the respective edit button to change services,
+Click seat layout to see who are want special meal and normal meal
+
+->
+There are upcoming flights are
+Click the flight detail
+Select respective button to access the service
+
+In right corner logout button is there.
+
+
+json-server --watch flights.json    ->To start json start
+ng test --code--coverage   ->To see coverage
+
+............................................................
+
+ng add @angular/material  
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
 
 ## Development server

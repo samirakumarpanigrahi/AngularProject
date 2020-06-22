@@ -1,0 +1,8 @@
+.example-card {
+    margin: 15px;
+}
+
+.example-header-image {
+    background-image: url('https://images-eu.ssl-images-amazon.com/images/I/418wwCw2HuL.png');
+    background-size: cover;
+}

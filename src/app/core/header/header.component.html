@@ -1,0 +1,25 @@
+<!-- nav -->
+<!-- <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/">Home</a>
+        <a class="nav-item nav-link" routerLink="/checkin">CheckIn</a>
+        <a class="nav-item nav-link" routerLink="/inflight">InFlight</a>
+        <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
+        <mat-icon matTooltip="Logout" class="nav-item nav-link" (click)="logout()" style="margin-left: 900px;">logout</mat-icon>
+
+    </div>
+</nav> -->
+
+<mat-toolbar color="accent" *ngIf="currentUser">
+    <mat-icon matTooltip="Home" routerLink="/">flight</mat-icon>
+    <a routerLink="/checkin" routerLinkActive="active" *ngIf="isUser">CheckIn</a>
+    <a routerLink="/inflight" routerLinkActive="active" *ngIf="isUser">InFlight</a>
+    <a routerLink="/admin" routerLinkActive="active " *ngIf="isAdmin ">Admin</a>
+    <img src="../../../assets/avatar.svg " width="50px " height="100px " alt=" ">
+    <mat-icon class="logout " matTooltip="Logout " (click)="logout() ">logout</mat-icon>
+</mat-toolbar>
+
+<!-- main app container -->
+<div>
+    <router-outlet></router-outlet>
+</div>

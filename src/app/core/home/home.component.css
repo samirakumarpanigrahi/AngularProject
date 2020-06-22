@@ -1,0 +1,11 @@
+.side-nav {
+    height: 100%;
+    width: 30%;
+    border: 0.5px solid black;
+    box-shadow: aqua;
+    background-color: blue;
+}
+
+p {
+    color: burlywood;
+}

@@ -1,0 +1,85 @@
+<!-- dialog-box.component.html -->
+<!-- dialog-box.component.html -->
+
+
+
+<h1 mat-dialog-title>Row Action :: <strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+    <div *ngIf="action != 'Delete'; else elseTemplate">
+        <mat-form-field *ngIf="action === 'Add'">
+            <input type="number" placeholder="{{action}} cId" matInput [(ngModel)]="local_data.cId">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input placeholder="{{action}} customername" matInput [(ngModel)]="local_data.customername">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Select Seat</mat-label>
+            <mat-select [(ngModel)]="local_data.seatno">
+                <mat-option *ngFor="let seat of reaminingSeat" [value]="seat">
+                    {{seat}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input placeholder="{{action}} passport" matInput [(ngModel)]="local_data.passport">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input placeholder="{{action}} address" matInput [(ngModel)]="local_data.address">
+        </mat-form-field>
+        <br>
+
+        <mat-form-field>
+            <mat-label>Choose your DOB</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="local_data.DOB">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <br>
+        <mat-form-field>
+            <mat-label>Category</mat-label>
+            <mat-select [(ngModel)]="local_data.category">
+                <mat-option *ngFor="let food of categories" [value]="food">
+                    {{food}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>AcillaryServices</mat-label>
+            <mat-select [(ngModel)]="local_data.ancillayService" multiple>
+                <mat-option *ngFor="let topping of ancillaryServices" [value]="topping">{{topping}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <br>
+        <mat-form-field>
+            <mat-label>Category</mat-label>
+            <mat-select [(ngModel)]="local_data.meal">
+                <mat-option *ngFor="let food of specialMeals" [value]="food ">
+                    {{food}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <br>
+        <mat-form-field>
+            <mat-label>Shopping</mat-label>
+            <mat-select [(ngModel)]="local_data.shop" multiple>
+                <mat-option *ngFor="let shop of shoppingItems" [value]="shop ">{{shop}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+    </div>
+    <ng-template #elseTemplate>
+        Sure to delete <b>{{local_data.name}}</b>?
+    </ng-template>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="doAction()">{{action}}</button>
+    <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>

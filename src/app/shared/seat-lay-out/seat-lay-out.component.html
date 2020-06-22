@@ -1,0 +1,93 @@
+<div *ngIf="type ==='mealMap'">
+    <mat-card class="colourcode">
+
+        <div class="red-one"></div>
+        <div style="margin-left:  3px; margin-top :-3px;">Normal Meal</div>
+
+        <div class="grey-one"></div>
+        <div style="margin-left:  3px; margin-top :-3px;">Special Meal</div>
+    </mat-card>
+    <div class="plane">
+
+        <div class="exit exit--front fuselage">
+
+        </div>
+        <ol class="cabin fuselage">
+            <li *ngFor="let seats of rows" class="row row--1">
+                <ol class="seats" type="A">
+                    <li *ngFor="let seat of seats " class="seat" [ngClass]="{normalMeal:isNormalMeal(seat),specialMeal:isSpecialMeal(seat)}">
+                        <input type="checkbox" [checked]="seatsLayout?.booked?.includes(seat)" [id]="seat" />
+                        <label [for]="seat">{{seat}}</label>
+                    </li>
+                </ol>
+            </li>
+        </ol>
+        <div class="exit exit--back fuselage">
+
+        </div>
+    </div>
+</div>
+<div *ngIf="type ==='seatBook'">
+
+
+    <mat-card class="colourcode">
+        <div class="green-one"></div>
+        <div style="margin-left:  3px; margin-top :-3px;">Checked-In</div>
+
+        <div class="grey-one"></div>
+        <div style="margin-left:  3px; margin-top :-3px;">Not Checked-In</div>
+    </mat-card>
+    <div class="plane">
+
+        <div class="exit exit--front fuselage">
+
+        </div>
+        <ol class="cabin fuselage">
+            <li *ngFor="let seats of rows" class="row row--1">
+                <ol class="seats" type="A">
+                    <li *ngFor="let seat of seats" class="seat">
+                        <input (click)="seatAction(seat)" type="checkbox" [checked]="seatsLayout?.booked?.includes(seat)" [id]="seat" />
+                        <label [for]="seat">{{seat}}</label>
+                    </li>
+                </ol>
+            </li>
+        </ol>
+        <div class="exit exit--back fuselage">
+
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="type ==='checkin'">
+
+    <mat-card class="colourcode">
+        <div class="green-one"></div>
+        <div style="margin-left:  3px; margin-top :-3px;">Checked-In + Normal</div>
+        <div class="red-one"></div>
+        <div style="margin-left:  3px; margin-top :-3px;">Checked-In + Wheel-Chair</div>
+        <div class="pink-one"></div>
+        <div style="margin-left:  3px; margin-top :-3px;">Checked-In + Infant</div>
+        <div class="grey-one"></div>
+        <div style="margin-left:  3px; margin-top :-3px;">Not Checked-In</div>
+    </mat-card>
+    <div class="plane">
+
+        <div class="exit exit--front fuselage">
+
+        </div>
+        <ol class="cabin fuselage">
+            <li *ngFor="let seats of rows" class="row row--1">
+                <ol class="seats" type="A">
+                    <li *ngFor="let seat of seats " class="seat" [ngClass]="{wheel:isWheel(seat),infant:isInfant(seat),normal:isNormal(seat)}">
+                        <input type="checkbox" [checked]="seatsLayout?.booked?.includes(seat)" [id]="seat" />
+                        <label [for]="seat">{{seat}}</label>
+                    </li>
+                </ol>
+            </li>
+        </ol>
+        <div class="exit exit--back fuselage">
+
+        </div>
+    </div>
+</div>

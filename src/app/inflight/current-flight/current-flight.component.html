@@ -1,0 +1,112 @@
+<mat-tab-group mat-align-tabs="center" color="accent">
+    <mat-tab label="Passenger">
+        <mat-card class="example-card">
+            <mat-form-field>
+                <mat-label>Filter</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mindtree">
+            </mat-form-field>
+
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource" #mytable matSort>
+
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="cId">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+                        <td mat-cell *matCellDef="let row"> {{row.cId}} </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="address">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+                        <td mat-cell *matCellDef="let row"> {{row.address}} </td>
+                    </ng-container>
+
+                    <!-- Progress Column -->
+                    <ng-container matColumnDef="customername">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                        <td mat-cell *matCellDef="let row"> {{row.customername}} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="seatno">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Seat No </th>
+                        <td mat-cell *matCellDef="let row"> {{row.seatno}} </td>
+                    </ng-container>
+
+                    <!-- Color Column -->
+                    <ng-container matColumnDef="checkenin">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Checkenin </th>
+                        <td mat-cell *matCellDef="let row"> {{row.checkenin}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="passport">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Passport </th>
+                        <td mat-cell *matCellDef="let row"> {{row.passport}} </td>
+                    </ng-container>
+
+
+
+
+                    <ng-container matColumnDef="DOB">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> DOB </th>
+                        <td mat-cell *matCellDef="let row"> {{row.DOB | date:'shortDate'}} </td>
+                    </ng-container>
+
+
+
+
+                    <ng-container matColumnDef="category">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+                        <td mat-cell *matCellDef="let row"> {{row.category}} </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="ancillayService">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> AncillayService </th>
+                        <td mat-cell *matCellDef="let row"> {{row.ancillayService}} </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="meal">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Meal </th>
+                        <td mat-cell *matCellDef="let row"> {{row.meal}} </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="shop">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Shop </th>
+                        <td mat-cell *matCellDef="let row"> {{row.shop}} </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                        <td mat-cell *matCellDef="let row" class="action-link">
+                            <button mat-icon-button color="accent" (click)="openDialog('Ancillay',row)"><mat-icon matTooltip="AncillayService" color="accent">edit</mat-icon></button>
+                            <button mat-icon-button color="accent" (click)="openDialog('Meal',row)"><mat-icon matTooltip="Meal" color="accent">local_dining</mat-icon></button>
+                            <button mat-icon-button color="accent" (click)="openDialog('Shop',row)"><mat-icon matTooltip="Shoping" color="accent">store</mat-icon></button>
+
+                        </td>
+                    </ng-container>
+
+
+
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                    </tr>
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </div>
+
+
+        </mat-card>
+    </mat-tab>
+    <mat-tab label="Seat Layout">
+        <!-- <app-meal-map [seatsLayout]="seatsLayout"></app-meal-map> -->
+        <app-seat-lay-out [seatsLayout]="seatsLayout" [flight]="flight" [type]='mealMap'></app-seat-lay-out>
+        <router-outlet></router-outlet>
+    </mat-tab>
+
+</mat-tab-group>

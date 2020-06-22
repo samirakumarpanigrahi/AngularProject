@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Row Action :: <strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+    <div *ngIf="action ==='Meal'">
+        <mat-form-field>
+            <mat-label>Category</mat-label>
+            <mat-select [(ngModel)]=" local_data.meal">
+                <mat-option *ngFor="let food of specialMeals" [value]="food ">
+                    {{food}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div *ngIf="action ==='Ancillay'">
+        <mat-form-field>
+            <mat-label>AncillayService</mat-label>
+            <mat-select [(ngModel)]="local_data.ancillayService" multiple>
+                <mat-option *ngFor="let ancillayService of ancillaryServices" [value]="ancillayService ">{{ancillayService}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div *ngIf="action ==='Shop'">
+        <mat-form-field>
+            <mat-label>Shopping</mat-label>
+            <mat-select [(ngModel)]="local_data.shop" multiple>
+                <mat-option *ngFor="let shop of shoppingItems" [value]="shop ">{{shop}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="doAction() ">{{action}}</button>
+    <button mat-button (click)="closeDialog() ">Cancel</button>
+</div>

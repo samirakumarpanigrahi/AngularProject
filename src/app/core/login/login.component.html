@@ -1,0 +1,168 @@
+<div class="container">
+    <div class="img">
+        <img src="../../../assets/undraw_airport_2581.svg">
+    </div>
+    <div class="login-content">
+        <form [formGroup]="loginForm">
+            <img src="../../../assets/avatar.svg">
+            <h2 class="title">Welcome</h2>
+            <div class="form-group">
+                <mat-form-field style="width: 100%" appearance="outline">
+                    <mat-label>User Id</mat-label>
+                    <input matInput placeholder="user Id" formControlName="username">
+
+                    <mat-icon matSuffix>face</mat-icon>
+
+                    <mat-error *ngIf="f.username.invalid">
+                        Enter a valid
+                        <strong>User Id</strong>
+                    </mat-error>
+                </mat-form-field>
+
+
+            </div>
+            <div class="form-group">
+                <mat-form-field style="width: 100%" appearance="outline">
+                    <mat-label>password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" placeholder="password" formControlName="password">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+
+
+                    <mat-error *ngIf="f.password.invalid">
+                        Enter a valid
+                        <strong>password</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <button mat-flat-button color="accent" class="btn" type="submit" [disabled]="loading" (click)="onSubmit()">Login
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            </button>
+            <div>
+                <button mat-button style="padding: 1rem;" (click)="signInWithGoogle()">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    <mat-icon style="width: 50px; height:30px" svgIcon="logo"></mat-icon> Login With Google
+                </button>
+            </div>
+        </form>
+
+        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+    </div>
+</div>
+<!-- <div class="row">
+    <div class="col">
+
+        <img src="../../../assets/plane.jpg" alt="" width="600" height="578">
+    </div>
+    <div class="col">
+
+
+        <div style="background-color:transparent">
+            <div class="card">
+                <h4 class="card-header" style="background-color:transparent">
+                    <section class="mat-typography">
+                        <h1>
+                            <mat-icon matSuffix>flight</mat-icon><strong style="margin-left: 20px"> Flight Login</strong>
+                        </h1>
+                    </section>
+                </h4>
+                <div class="card-body">
+                    <form [formGroup]="loginForm">
+
+                        <div class="form-group">
+                            <mat-form-field style="width: 100%" appearance="outline">
+                                <mat-label>User Id</mat-label>
+                                <input matInput placeholder="user Id" formControlName="username">
+
+                                <mat-icon matSuffix>face</mat-icon>
+
+                                <mat-error *ngIf="f.username.invalid">
+                                    Enter a valid
+                                    <strong>User Id</strong>
+                                </mat-error>
+                            </mat-form-field>
+
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <mat-form-field style="width: 100%" appearance="outline">
+                                <mat-label>password</mat-label>
+                                <input matInput [type]="hide ? 'password' : 'text'" placeholder="password" formControlName="password">
+                                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+
+
+                                <mat-error *ngIf="f.password.invalid">
+                                    Enter a valid
+                                    <strong>password</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <button mat-flat-button color="accent" type="submit" [disabled]="loading" (click)="onSubmit()">Login
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                </button>
+
+
+                    </form>
+
+                    <div style="margin-left: 50%">
+
+                        <div>
+                            <button mat-button style="padding: 1rem;" (click)="signInWithGoogle()">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    <mat-icon style="width: 50px; height:30px"
+                    svgIcon="logo"></mat-icon> Login With Google
+                    </button>
+
+                        </div>
+
+
+                    </div>
+                    <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div> -->
+
+<!-- <div class="col-md-6 offset-md-3 mt-5">
+    <div class="alert alert-info">
+        <strong>Normal User</strong> - U: user P: user<br />
+        <strong>Administrator</strong> - U: admin P: admin
+    </div>
+    <div class="card">
+        <h4 class="card-header">Angular 8 Role Based Auth Example</h4>
+        <div class="card-body">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">Username is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                    </div>
+                </div>
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Login
+                </button>
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+            </form>
+
+            <button class="btn btn-social-icon btn-google" type="button" (click)="signInWithGoogle()"><span class="fa fa-google"></span></button>
+        </div>
+    </div>
+</div> -->

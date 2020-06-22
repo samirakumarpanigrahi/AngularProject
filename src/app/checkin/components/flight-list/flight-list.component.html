@@ -1,0 +1,83 @@
+<mat-card class="example-card">
+    <h4>
+        Upcoming Flights are ...
+    </h4>
+</mat-card>
+<mat-card class="example-card">
+
+    <div class="row">
+        <div class="col">
+            <div mat-card-avatar class=" example-header-image "></div>
+        </div>
+        <div class="col">
+            Planename
+            <br> Planeno
+
+        </div>
+        <div class="col">
+            Departure Time
+            <br> DepartureFrom
+        </div>
+        <div class="col">
+            Duration
+
+
+        </div>
+        <div class="col">
+            ArrivalTime
+            <br> ArrivalTo
+        </div>
+        <div class="col" style='font-size:20px;'>
+            <span>&#8377;</span> Price
+        </div>
+        <div class="col">
+
+            Detail
+
+        </div>
+    </div>
+
+</mat-card>
+<div *ngFor="let plane of planes | nextFlight">
+
+    <mat-card class="example-card">
+
+        <div class="row">
+            <div class="col">
+                <div mat-card-avatar class=" example-header-image "></div>
+            </div>
+            <div class="col">
+                {{plane.planename}}
+                <br> {{plane.planeno}}
+
+            </div>
+            <div class="col">
+                {{plane.departure| date:'shortTime'}}
+                <br> {{plane.departureFrom | titlecase}}
+            </div>
+            <div class="col">
+                {{plane.duration}} <br> Non stop
+
+
+            </div>
+            <div class="col">
+                {{plane.arrival| date:'shortTime'}}
+                <br> {{plane.arrivalTo | titlecase}}
+            </div>
+            <div class="col" style='font-size:20px;'>
+                <span>&#8377;</span> {{plane.price}}
+            </div>
+            <div class="col">
+
+                <button mat-raised-button color="accent" (click)="selectedFlight(plane)">Flight Detail</button>
+
+            </div>
+        </div>
+
+    </mat-card>
+
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
