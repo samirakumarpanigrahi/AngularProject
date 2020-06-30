@@ -1,20 +1,9 @@
 import { Component, OnInit, Inject, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { InflightService } from '../inflight.service';
-export interface UserData {
-  cId: number,
-  customername: string,
-  seatno: number,
-  checkenin: boolean,
-  passport: string,
-  address: string,
-  DOB: string,
-  category: string,
-  meal:string,
-  ancillayService: string[],
-  shop:string[]
+import { Passenger } from 'src/app/core/_models/passenger';
+import { Flight } from 'src/app/core/_models/flight';
 
-}
 @Component({
   selector: 'app-change-services',
   templateUrl: './change-services.component.html',
@@ -27,11 +16,11 @@ export class ChangeServicesComponent implements OnInit{
   ancillaryServices:string[];
 specialMeals:string[];
 shoppingItems:string[];
-flight:any;
+flight:Flight;
   constructor(
     public dialogRef: MatDialogRef<ChangeServicesComponent>,
     //@Optional() is used to prevent error if no data is passed
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: UserData,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: Passenger,
     private service:InflightService) {
     console.log(data);
     this.local_data = {...data};
@@ -44,9 +33,9 @@ flight:any;
   {
     this.flight = this.service.getSelectedFlight();
     
-    this.ancillaryServices=this.flight?.ancillaryServices;
-    this.specialMeals=this.flight?.specialMeals;
-    this.shoppingItems=this.flight?.shoppingItems;
+    this.ancillaryServices=this.flight.ancillaryServices;
+    this.specialMeals=this.flight.specialMeals;
+    this.shoppingItems=this.flight.shoppingItems;
     console.log(this.flight);
   }
   

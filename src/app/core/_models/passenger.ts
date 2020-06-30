@@ -1,4 +1,4 @@
-export class Passenger{
+export class Passenger {
   cId: number;
   customername: string;
   checkenin: boolean;

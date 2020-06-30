@@ -13,7 +13,7 @@ export interface Tile {
 @Component({
   selector: 'app-seat-lay-out',
   templateUrl: './seat-lay-out.component.html',
-  styleUrls: ['./seat-lay-out.component.scss']
+  styleUrls: ['./seat-lay-out.component.css']
 })
 export class SeatLayOutComponent implements OnInit {
 
@@ -26,27 +26,7 @@ export class SeatLayOutComponent implements OnInit {
   rows = new Array();
   database :any=[];
   
-
-
-  meals: Tile[] = [
-    {text: 'Special Meal', cols: 1, rows: 1, color: 'deeppink'},
-    {text: 'Normal Meal', cols: 1, rows: 1, color: 'cyan'},
-   
-  ];
-
-  booking: Tile[] = [
-    {text: 'Checkin', cols: 1, rows: 1, color: '#bada55'},
-    {text: 'Not Checkin', cols: 1, rows: 1, color: '#F42536'},
-   
-  ];
-
-  // category: Tile[] = [
-  //   {text: 'Checkin + Wheel Chair', cols: 1, rows: 1, color: 'cyan'},
-  //   {text: 'Checkin + infant', cols: 1, rows: 1, color: 'darkorchid'},
-  //   {text: 'Checkin', cols: 1, rows: 1, color: ''},
-  //   {text: 'Not Checkin', cols: 1, rows: 1, color: '#F42536'},
-   
-  // ];
+  
 
   ngOnInit() {
     this.database=this.flight?.passengers;
@@ -78,12 +58,7 @@ export class SeatLayOutComponent implements OnInit {
 
   }
 
-  // done() {
-  //   this.confirm.emit(this.seatsLayout.booked);
   
-  //   this.onlySeat = [];
-
-  // }
   
  
   seatAction(seat) {

@@ -11,34 +11,33 @@ import { SocialUser } from 'angularx-social-login';
 })
 export class HeaderComponent implements OnInit {
 
-  
-socialUser:SocialUser;
+  currentUser: User;
+  socialUser: SocialUser;
   ngOnInit() {
-this.socialUser=this.userService.getSocialUser();
-console.log(this.socialUser);
+    this.socialUser = this.userService.getSocialUser();
 
   }
 
-  currentUser: User;
+ 
 
   constructor(
-      private router: Router,
-      private authenticationService: AuthenticationService,
-private userService:UserService
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    private userService: UserService
   ) {
-      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   get isAdmin() {
-      return this.currentUser && this.currentUser.role === Role.Admin;
+    return this.currentUser && this.currentUser.role === Role.Admin;
   }
   get isUser() {
     return this.currentUser && this.currentUser.role === Role.User;
-}
+  }
 
   logout() {
-      this.authenticationService.logout();
-      this.router.navigate(['/login']);
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
   }
 
 }

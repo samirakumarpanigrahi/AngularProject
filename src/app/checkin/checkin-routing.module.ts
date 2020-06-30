@@ -6,11 +6,11 @@ import { PassengerDetailComponent } from './components/passenger-detail/passenge
 
 
 const routes: Routes = [
-  {path:"",component:FlightListComponent},
-  {path:'selectedFlight',component:DisplayFlightComponent},
-  {path:'selectedFlight/passenger',component:PassengerDetailComponent}
-  
-  
+  { path: "", component: FlightListComponent },
+  { path: 'selectedFlight', component: DisplayFlightComponent },
+  { path: 'selectedFlight/passenger', component: PassengerDetailComponent }
+
+
 ];
 
 @NgModule({

@@ -35,7 +35,18 @@ In right corner logout button is there.
 
 json-server --watch flights.json    ->To start json start
 ng test --code--coverage   ->To see coverage
-
+ng s
+ng add @angular/pwa  
+npm install --global http-server
+\FlightProject\dist\FlightProject> http-server -p 8081 
+ npm install ngx-spinner --save 
+npm install ngx-toastr --save
+npm install -g node-sass
+node-sass seat-lay-out.component.scss seat-lay-out.component.css
+json-server --watch flight-data.json
+ng build --prod
+ng test --code--coverage
+I applied Service Worker
 ............................................................
 
 ng add @angular/material  

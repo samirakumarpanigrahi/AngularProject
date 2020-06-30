@@ -1,4 +1,3 @@
-<!-- <button mat-raised-button color="accent" (click)="selectedFlight()">Flight Detail</button> -->
 <div class="row">
     <div class="col">
         <mat-card class="example-card">
@@ -6,7 +5,8 @@
 
                 <mat-card-title>Name : <strong>{{passenger?.customername}}</strong></mat-card-title>
                 <mat-card-subtitle> Category : <strong>{{passenger?.category}}</strong></mat-card-subtitle>
-                <mat-card-subtitle> AncillayService : <strong>{{passenger?.ancillayService}}</strong></mat-card-subtitle>
+                <mat-card-subtitle> AncillayService : <strong>{{passenger?.ancillayService}}</strong>
+                </mat-card-subtitle>
                 <mat-card-subtitle> Seat No : <strong>{{passenger?.seatno}}</strong></mat-card-subtitle>
             </mat-card-header>
 
@@ -43,9 +43,10 @@
     </div>
     <div class="col" *ngIf="!isChangeSeat">
 
-        <!-- <app-seat-book [seatsLayout]="seatsLayout" (trial)="getTrial($event)"> </app-seat-book> -->
 
-        <app-seat-lay-out [seatsLayout]="seatsLayout" [flight]="flight" [type]='seatBook' (trial)="getTrial($event)"></app-seat-lay-out>
+
+        <app-seat-lay-out [seatsLayout]="seatsLayout" [flight]="flight" [type]='seatBook' (trial)="getTrial($event)">
+        </app-seat-lay-out>
         <router-outlet></router-outlet>
 
     </div>

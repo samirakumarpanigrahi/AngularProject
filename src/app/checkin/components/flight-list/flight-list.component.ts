@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CheckinService } from '../../checkin.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Flight } from 'src/app/core/_models/flight';
 
 @Component({
   selector: 'app-flight-list',
@@ -10,30 +11,27 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class FlightListComponent implements OnInit {
 
-  constructor(private service:CheckinService,private router:Router,
-    private route:ActivatedRoute, private spinner: NgxSpinnerService) { }
-planes:any;
+  constructor(private service: CheckinService, private router: Router,
+    private route: ActivatedRoute, private spinner: NgxSpinnerService) { }
+  planes: Flight[];
   ngOnInit() {
     this.spinner.show();
     this.service.get()
-        .subscribe(data => {
-          console.log(data);
-          this.planes = data;
-        })
+      .subscribe(data => {
+        this.planes = data;
+      })
 
-        setTimeout(() => {
-          /** spinner ends after 5 seconds */
-          this.spinner.hide();
-        }, 600);
-  
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 600);
+
   }
 
 
-  selectedFlight(data)
-  {
+  selectedFlight(data: Flight) {
     this.service.setSelectedFlight(data);
-    
-    this.router.navigate(['selectedFlight'], { relativeTo: this.route});
+    this.router.navigate(['selectedFlight'], { relativeTo: this.route });
   }
 
 }

@@ -6,3 +6,25 @@
     background-image: url('https://images-eu.ssl-images-amazon.com/images/I/418wwCw2HuL.png');
     background-size: cover;
 }
+@media screen and (max-width: 380px) {
+    .btn {
+        display: block;
+        width: 100%;
+        height: 50px;
+        border-radius: 25px;
+        outline: none;
+        border: none;
+        background-image: linear-gradient(to right, #ff4583, #ff4583, #ff4583);
+        background-size: 200%;
+        font-size: 1.2rem;
+        color: #fff;
+        font-family: 'Poppins', sans-serif;
+        text-transform: uppercase;
+        margin: 1rem 3rem;
+        cursor: pointer;
+        transition: .5s;
+    }
+    .head {
+        display: none;
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+    "index": "/index.html",
+    "assetGroups": [{
+        "name": "app",
+        "installMode": "prefetch",
+        "resources": {
+            "files": [
+                "/favicon.ico",
+                "/index.html",
+                "/manifest.webmanifest",
+                "/*.css",
+                "/*.js"
+            ],
+            "urls": [
+                "https://images-eu.ssl-images-amazon.com/images/I/418wwCw2HuL.png",
+                "https://fonts.googleapis.com/icon?family=Material+Icons",
+                "https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg",
+                "https://fonts.gstatic.com/s/materialicons/v53/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",
+                "https://apis.google.com/js/platform.js"
+
+            ]
+        }
+    }, {
+        "name": "assets",
+        "installMode": "lazy",
+        "updateMode": "prefetch",
+        "resources": {
+            "files": [
+                "/assets/**",
+                "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
+            ]
+        }
+    }],
+    "dataGroups": [{
+        "name": "posts",
+        "urls": [
+            "http://localhost:3000/planes"
+        ],
+        "cacheConfig": {
+            "maxSize": 5,
+            "maxAge": "6h",
+            "timeout": "4s",
+            "strategy": "freshness"
+        }
+    }]
+}

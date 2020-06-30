@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InflightService } from '../inflight.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Flight } from 'src/app/core/_models/flight';
 
 @Component({
   selector: 'app-all-flight',
@@ -12,7 +13,7 @@ export class AllFlightComponent implements OnInit {
 
   constructor(private service:InflightService,private router:Router, private spinner: NgxSpinnerService,
     private route:ActivatedRoute) { }
-planes:any;
+planes:Flight[];
   ngOnInit() {
     this.spinner.show();
     this.service.get()
@@ -27,7 +28,7 @@ planes:any;
   }
 
 
-  selectedFlight(data)
+  selectedFlight(data:Flight)
   {
     this.service.setSelectedFlight(data);
     

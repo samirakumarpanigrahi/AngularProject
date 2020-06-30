@@ -12,15 +12,27 @@
         margin-left: 5%;
     }
     
+    header {
+        align-content: center;
+        align-items: center;
+    }
+    
+    footer {
+        position: unset;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 5px;
+        background-color: #ff4583;
+        color: #fff;
+    }
+    
     @media(max-width: 850px) {
         img {
             margin-left: 5%;
         }
     }
     
-    @media only screen and (max-width: 600px) {
-        /* For tablets: */
-        /* mat-toolbar {
-            width: 200%;
-        } */
-    }
+    

@@ -13,6 +13,8 @@ import { SharedModule } from './shared/shared.module';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { MatDialogRef} from '@angular/material/dialog';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent
@@ -30,6 +32,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     NgxSpinnerModule,
     MatGridListModule,
     ToastrModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   
   bootstrap: [AppComponent]

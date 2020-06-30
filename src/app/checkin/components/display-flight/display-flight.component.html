@@ -1,104 +1,105 @@
 <mat-tab-group mat-align-tabs="center" color="accent">
     <mat-tab label="Passenger">
-        <mat-card class="example-card">
+        <mat-form-field>
+            <mat-label>Category Filter</mat-label>
+            <mat-select [(ngModel)]="categoryFilter" (selectionChange)="applyFilter('category', categoryFilter)"
+                required>
+                <mat-option>All</mat-option>
+                <mat-option *ngFor="let animal of categories" [value]="animal">
+                    {{animal}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-checkbox style="margin-left: 20px;" [(ngModel)]="checkinFilter" (change)="applyFilter('checkenin',true)">
+            IsCheckIn</mat-checkbox>
 
 
-
-            <mat-form-field>
-                <mat-label>Category Filter</mat-label>
-                <mat-select [(ngModel)]="categoryFilter" (selectionChange)="applyFilter('category', categoryFilter)" required>
-                    <mat-option>All</mat-option>
-                    <mat-option *ngFor="let animal of categories" [value]="animal">
-                        {{animal}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-            <mat-checkbox style="margin-left: 20px;" [(ngModel)]="checkinFilter" (change)="applyFilter('checkenin',true)">IsCheckIn</mat-checkbox>
+        <mat-card class="example-card mat-elevation-z8">
 
 
+            <mat-table [dataSource]="dataSource" #mytable matSort>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="cId">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+                    <mat-cell *matCellDef="let row" data-label="Id"> {{row.cId}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="address">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> address </mat-header-cell>
+                    <mat-cell *matCellDef="let row" data-label="address"> {{row.address}} </mat-cell>
+                </ng-container>
 
 
-            <div class="mat-elevation-z8">
-                <table mat-table [dataSource]="dataSource" #mytable matSort>
+                <!-- Progress Column -->
+                <ng-container matColumnDef="customername">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                    <mat-cell *matCellDef="let row" data-label="Name"> {{row.customername}} </mat-cell>
+                </ng-container>
 
-                    <!-- ID Column -->
-                    <ng-container matColumnDef="cId">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-                        <td mat-cell *matCellDef="let row"> {{row.cId}} </td>
-                    </ng-container>
+                <!-- Name Column -->
+                <ng-container matColumnDef="seatno">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> seat No </mat-header-cell>
+                    <mat-cell *matCellDef="let row" data-label="Seat"> {{row.seatno}} </mat-cell>
+                </ng-container>
 
+                <!-- Color Column -->
+                <ng-container matColumnDef="checkenin">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> checkenin </mat-header-cell>
+                    <mat-cell *matCellDef="let row" data-label="Checkin"> {{row.checkenin}} </mat-cell>
+                </ng-container>
 
-                    <ng-container matColumnDef="address">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> address </th>
-                        <td mat-cell *matCellDef="let row"> {{row.address}} </td>
-                    </ng-container>
-
-                    <!-- Progress Column -->
-                    <ng-container matColumnDef="customername">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                        <td mat-cell *matCellDef="let row"> {{row.customername}} </td>
-                    </ng-container>
-
-                    <!-- Name Column -->
-                    <ng-container matColumnDef="seatno">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> seat No </th>
-                        <td mat-cell *matCellDef="let row"> {{row.seatno}} </td>
-                    </ng-container>
-
-                    <!-- Color Column -->
-                    <ng-container matColumnDef="checkenin">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> checkenin </th>
-                        <td mat-cell *matCellDef="let row"> {{row.checkenin}} </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="passport">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> passport </th>
-                        <td mat-cell *matCellDef="let row"> {{row.passport}} </td>
-                    </ng-container>
-
-
-
-
-                    <ng-container matColumnDef="DOB">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> DOB </th>
-                        <td mat-cell *matCellDef="let row"> {{row.DOB | date:'shortDate'}} </td>
-                    </ng-container>
+                <ng-container matColumnDef="passport">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> passport </mat-header-cell>
+                    <mat-cell *matCellDef="let row" data-label="Passport"> {{row.passport}} </mat-cell>
+                </ng-container>
 
 
 
 
-                    <ng-container matColumnDef="category">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> category </th>
-                        <td mat-cell *matCellDef="let row"> {{row.category}} </td>
-                    </ng-container>
-
-
-                    <ng-container matColumnDef="ancillayService">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> ancillayService </th>
-                        <td mat-cell *matCellDef="let row"> {{row.ancillayService}} </td>
-                    </ng-container>
-                    <ng-container matColumnDef="action">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Checkin </th>
-                        <td mat-cell *matCellDef="let row" class="action-link">
-                            <button mat-icon-button color="accent" (click)="getPassenger(row)"><mat-icon matTooltip="AncillayService" color="accent">edit</mat-icon></button>
-                        </td>
-                    </ng-container>
+                <ng-container matColumnDef="DOB">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> DOB </mat-header-cell>
+                    <mat-cell *matCellDef="let row" data-label="DOB"> {{row.DOB | date:'shortDate'}} </mat-cell>
+                </ng-container>
 
 
 
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-                    </tr>
-                </table>
 
-                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-            </div>
+                <ng-container matColumnDef="category">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> category </mat-header-cell>
+                    <mat-cell *matCellDef="let row" data-label="Category"> {{row.category}} </mat-cell>
+                </ng-container>
+
+
+                <ng-container matColumnDef="ancillayService">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> ancillayService </mat-header-cell>
+                    <mat-cell *matCellDef="let row" data-label="Ancillary"> {{row.ancillayService}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="action">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Checkin </mat-header-cell>
+                    <mat-cell *matCellDef="let row" data-label="Checkin" class="action-link">
+
+                        <button rel="apple-touch-icon" mat-icon-button color="accent" (click)="getPassenger(row)">
+                            <mat-icon matTooltip="checkin" color="accent">edit</mat-icon>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+
+
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;">
+                </mat-row>
+            </mat-table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
 
 
         </mat-card>
     </mat-tab>
     <mat-tab label="Seat Layout">
-        <!-- <layout [seatsLayout]="seatsLayout" (confirm)="getSelected($event)"></layout> -->
+
         <app-seat-lay-out [seatsLayout]="seatsLayout" [flight]="flight" [type]='checkin'></app-seat-lay-out>
         <router-outlet></router-outlet>
     </mat-tab>

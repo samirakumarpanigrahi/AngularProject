@@ -10,23 +10,22 @@ export class AdminFlightPipe implements PipeTransform {
 
   transform(value: any): unknown {
     console.log(value);
-    
+
     const resultArray = [];
-    if(value!=null)
-    {
-    for (const item of value) {
-      let ourDate = new Date(item.departure);
-      ourDate.setDate(this.currentDate.getDate())
-      ourDate.setFullYear(this.currentDate.getFullYear())
-      ourDate.setMonth(this.currentDate.getMonth())
+    if (value != null) {
+      for (const item of value) {
+        let ourDate = new Date(item.departure);
+        ourDate.setDate(this.currentDate.getDate())
+        ourDate.setFullYear(this.currentDate.getFullYear())
+        ourDate.setMonth(this.currentDate.getMonth())
 
-      if (this.currentDate.getTime() < ourDate.getTime()) {
-        resultArray.push(item);
+        if (this.currentDate.getTime() < ourDate.getTime()) {
+          resultArray.push(item);
+        }
+
       }
-
+      return resultArray;
     }
-    return resultArray;
-  }
   }
 
 

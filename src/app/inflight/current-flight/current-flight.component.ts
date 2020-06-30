@@ -7,22 +7,11 @@ import { InflightService } from '../inflight.service';
 import { MatDialog } from '@angular/material/dialog';
 import {ChangeServicesComponent} from '../change-services/change-services.component'
 import { HttpClient } from '@angular/common/http';
+import { Passenger } from 'src/app/core/_models/passenger';
+import { Flight } from 'src/app/core/_models/flight';
 
 
-export interface UserData {
-  cId: number,
-  customername: string,
-  seatno: number,
-  checkenin: boolean,
-  passport: string,
-  address: string,
-  DOB: string,
-  category: string,
-  meal:string,
-  ancillayService: string[],
-  shop:string[]
 
-}
 
 @Component({
   selector: 'app-current-flight',
@@ -40,14 +29,14 @@ export class CurrentFlightComponent implements OnInit {
 
 
 
-    passengers: UserData[] = [];
-    flight:any;
-    editable: any;
+    passengers: Passenger[] = [];
+    flight:Flight;
+    editable: Passenger;
     mealMap="mealMap";
-
+    isUpdatedFlight=true;
 
   displayedColumns: string[] = ['cId', 'customername', 'seatno', 'checkenin', 'passport', 'address', 'DOB', 'category', 'ancillayService','meal','shop','action'];
-  dataSource: MatTableDataSource<UserData>;
+  dataSource: MatTableDataSource<Passenger>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
@@ -55,17 +44,17 @@ export class CurrentFlightComponent implements OnInit {
 
 
     this.flight = this.service.getSelectedFlight();
-    console.log(this.flight);
-    this.passengers = this.flight?.passengers;
-    console.log(this.passengers);
+    
+    this.passengers = this.flight.passengers;
+   
     this.dataSource = new MatTableDataSource(this.passengers);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event?.target as HTMLInputElement)?.value;
-    this.dataSource.filter = filterValue?.trim().toLowerCase();
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
@@ -85,7 +74,7 @@ export class CurrentFlightComponent implements OnInit {
 
 
 
-  openDialog(action,obj) {
+  openDialog(action:string,obj:Passenger) {
     console.log(action);
     console.log(obj);
     
@@ -108,50 +97,53 @@ export class CurrentFlightComponent implements OnInit {
       }
     });
   }
-  changeShop(data: any) {
+  changeShop(data: Passenger) {
     console.log(data);
-    let index = this.findIndex(this.flight?.passengers, this.editable?.cId);
+    let index = this.findIndex(this.flight.passengers,this.editable.customername, this.editable.cId);
 
     this.flight.passengers[index].shop=data.shop;
    
     let x=this.updateTable();
     
   }
-  changeAncillary(row_obj)
+  changeAncillary(row_obj:Passenger)
   {
     console.log(row_obj);
-    let index = this.findIndex(this.flight.passengers, this.editable.cId);
+    let index = this.findIndex(this.flight.passengers,this.editable.customername, this.editable.cId);
 
     this.flight.passengers[index].ancillayService=row_obj.ancillayService;
    
     let x=this.updateTable();
     
   }
-  changeMeal(row_obj)
+  changeMeal(row_obj:Passenger)
   {
     console.log(row_obj);
-    let index = this.findIndex(this.flight?.passengers, this.editable?.cId);
+    let index = this.findIndex(this.flight.passengers,this.editable.customername, this.editable.cId);
 
     this.flight.passengers[index].meal = row_obj.meal;
    
     let x=this.updateTable();
     
   }
-  findIndex(array, id) {
-    for (let index = 0; index < array?.length; index++) {
-      if (id == array[index].cId) {
+  findIndex(array:Passenger[], name:string,id:number) {
+    for (let index = 0; index < array.length; index++) {
+      if (name === array[index].customername && id == array[index].cId) {
         return index;
       }
 
     }
   }
-
   updateTable()
   {
-    this.http.put("http://localhost:3000/planes/" + this.flight?.id, this.flight).subscribe((data) => {
+    this.isUpdatedFlight=false;
+    this.service.update(this.flight.id, this.flight)
+   .subscribe((data) => {
       this.flight = data;
-      console.log(this.flight);
-      this.passengers = this.flight?.passengers;
+      
+      this.isUpdatedFlight=true;
+      this.service.setSelectedFlight(this.flight);
+      this.passengers = this.flight.passengers;
 
 
       this.dataSource = new MatTableDataSource(this.passengers);

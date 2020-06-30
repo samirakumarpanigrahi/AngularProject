@@ -1,42 +1,50 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Flight } from '../core/_models/flight';
+import { Observable } from 'rxjs';
+import { Passenger } from '../core/_models/passenger';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckinService {
 
+  selectedFlight: Flight;
+  selectedPassenger: Passenger;
 
-  selectedPassenger:any;
-  SelectedPassenger(data: any) {
-    this.selectedPassenger=data;
+
+  constructor(private httpClient: HttpClient) { }
+
+  update(id: number, flight: Flight): Observable<Flight> {
+    return this.httpClient.put<Flight>("http://localhost:3000/planes/" + id, flight)
+  }
+
+
+  
+  SelectedPassenger(data: Passenger) {
+    this.selectedPassenger = data;
 
   }
-  
-  getSelectedPassenger()
-  {
-    
-    
+
+  getSelectedPassenger() {
     return this.selectedPassenger;
   }
 
 
-  selectedFlight:any;
-  setSelectedFlight(data: any) {
-    this.selectedFlight=data;
+  setSelectedFlight(data: Flight) {
+    this.selectedFlight = data;
   }
 
-  getSelectedFlight()
-  {
+
+  getSelectedFlight() {
     return this.selectedFlight;
   }
 
-  constructor(private httpClient: HttpClient) { }
+  
+  get(): Observable<Flight[]> {
+    return this.httpClient.get<Flight[]>("http://localhost:3000/planes");
 
-
-  get()
-  {
-    return this.httpClient.get("http://localhost:3000/planes");
   }
+  
 
 }

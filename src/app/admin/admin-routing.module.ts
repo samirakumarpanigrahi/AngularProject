@@ -6,9 +6,11 @@ import { SelectedFlightComponent } from './selected-flight/selected-flight.compo
 
 
 const routes: Routes = [
-  {path:'',
-component:AdminFlightsComponent},
-{path:'selectedFlight',component:SelectedFlightComponent}
+  {
+    path: '',
+    component: AdminFlightsComponent
+  },
+  { path: 'selectedFlight', component: SelectedFlightComponent }
 
 ];
 

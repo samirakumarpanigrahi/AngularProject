@@ -4,76 +4,81 @@
     </h4>
 </mat-card>
 
-<mat-card class="example-card">
+<mat-card class="example-card head">
 
-    <div class="row">
-        <div class="col">
+    <section class="row">
+        <article class="col">
             <div mat-card-avatar class=" example-header-image "></div>
-        </div>
-        <div class="col">
+        </article>
+        <article class="col">
             Planename
             <br> Planeno
 
-        </div>
-        <div class="col">
+        </article>
+        <article class="col">
             Departure Time
             <br> DepartureFrom
-        </div>
-        <div class="col">
+        </article>
+        <article class="col">
             Duration
 
 
-        </div>
-        <div class="col">
+        </article>
+        <article class="col">
             ArrivalTime
             <br> ArrivalTo
-        </div>
-        <div class="col" style='font-size:20px;'>
+        </article>
+        <article class="col" style='font-size:20px;'>
             <span>&#8377;</span> Price
-        </div>
-        <div class="col">
+        </article>
+        <article class="col">
 
             Detail
 
-        </div>
-    </div>
+        </article>
+    </section>
 
 </mat-card>
-<div *ngFor="let plane of planes |adminFlight">
+<!-- |adminFlight -->
+<div *ngFor="let plane of flight |adminFlight ">
 
     <mat-card class="example-card">
 
-        <div class="row">
-            <div class="col">
+        <section class="row">
+            <article class="col">
                 <div mat-card-avatar class=" example-header-image "></div>
-            </div>
-            <div class="col">
+            </article>
+            <article class="col">
                 {{plane.planename}}
                 <br> {{plane.planeno}}
 
-            </div>
-            <div class="col">
+            </article>
+            <article class="col">
                 {{plane.departure| date:'shortTime'}}
                 <br> {{plane.departureFrom}}
-            </div>
-            <div class="col">
-                {{plane.duration}} <br> Non stop
+            </article>
+            <article class="col">
+                {{plane.duration}}
+                <div class="head">
+                    Non stop
+                </div>
 
 
-            </div>
-            <div class="col">
+            </article>
+            <article class="col">
                 {{plane.arrival| date:'shortTime'}}
                 <br> {{plane.arrivalTo}}
-            </div>
-            <div class="col" style='font-size:20px;'>
+            </article>
+            <article class="col" style='font-size:20px;'>
                 <span>&#8377;</span> {{plane.price}}
-            </div>
-            <div class="col">
+            </article>
+            <article>
 
-                <button mat-raised-button color="accent" (click)="selectedFlight(plane)">Flight Detail</button>
+                <button class="btn" mat-flat-button color="accent" (click)="selectedFlight(plane)">Flight
+                    Detail</button>
 
-            </div>
-        </div>
+            </article>
+        </section>
 
     </mat-card>
 
@@ -81,4 +86,3 @@
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
     <p style="color: white"> Loading... </p>
 </ngx-spinner>
-<!-- <ngx-spinner></ngx-spinner> -->

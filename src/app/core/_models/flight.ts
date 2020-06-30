@@ -1,6 +1,6 @@
 import { Passenger } from './passenger';
 
-export class Flight{
+export class Flight {
     id: number;
     planename: string
     planeno: string;
@@ -10,12 +10,12 @@ export class Flight{
     arrival: string;
     duration: string;
     price: number;
-    ancillaryServices:string [];
-     
+    ancillaryServices: string[];
+
     specialMeals: string[];
-     
-    shoppingItems:string [];
-     
-    image:string
+
+    shoppingItems: string[];
+
+    image: string
     passengers: Passenger[]
 }

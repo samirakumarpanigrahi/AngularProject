@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../admin.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Flight } from 'src/app/core/_models/flight';
 
 @Component({
   selector: 'app-admin-flights',
@@ -10,32 +11,29 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class AdminFlightsComponent implements OnInit {
 
-  constructor(private adminService:AdminService,
-    private router:Router,
-    private route:ActivatedRoute,
-    private spinner: NgxSpinnerService) {}
-planes:any;
+  constructor(private adminService: AdminService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private spinner: NgxSpinnerService) { }
+  flight: Flight[];
   ngOnInit(): void {
     this.spinner.show();
-      this.adminService.get()
-        .subscribe(data => {
-          console.log(data);
-          this.planes = data;
-        })
-        
- 
-        setTimeout(() => {
-          /** spinner ends after 5 seconds */
-          this.spinner.hide();
-        }, 600);
-   
+    this.adminService.get()
+      .subscribe(data => {
+        this.flight = data;
+      })
+
+
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 600);
+
   }
 
-  selectedFlight(data)
-  {
+  selectedFlight(data: Flight) {
     this.adminService.setSelectedFlight(data);
-    
-    this.router.navigate(['selectedFlight'], { relativeTo: this.route});
+    this.router.navigate(['selectedFlight'], { relativeTo: this.route });
   }
 
 }

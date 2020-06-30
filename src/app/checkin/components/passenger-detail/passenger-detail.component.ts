@@ -43,13 +43,8 @@ export class PassengerDetailComponent implements OnInit {
     this.passenger = this.service.getSelectedPassenger()
     console.log(this.passenger);
     this.flight = this.service.getSelectedFlight();
-    this.allPassenger = this.flight?.passengers;
-    console.log(this.allPassenger);
-
-
-
-     let checkedIn = this.check(this.allPassenger);
-
+    this.allPassenger = this.flight.passengers;
+    let checkedIn = this.check(this.allPassenger);
   }
 
 
@@ -60,74 +55,62 @@ export class PassengerDetailComponent implements OnInit {
     booked: this.checkedSeat
   }
 
-  check(checkpassenger:Passenger[]) { 
-    checkpassenger?.find((a) => {
-      console.log(a);
-      if (a.checkenin === true) {
 
+  check(checkpassenger: Passenger[]) {
+    checkpassenger.find((a) => {
+      if (a.checkenin === true) {
         this.checkedSeat.push(a.seatno);
       }
-
     })
-
-
-    // console.log(this.checkedSeat);
-
   }
+
+
   getSelected(event) {
     console.log(event)
   }
+
+
+
   getTrial(event) {
     this.seatConfirm = event;
-    console.log(event);
-    if (this.seatConfirm[0] === this.passenger?.seatno) {
+    if (this.seatConfirm[0] === this.passenger.seatno) {
       this.isCheckIn = true;
     }
     if (this.seatConfirm.length == 0) {
-    this.isCheckIn = false;
-
+      this.isCheckIn = false;
     }
-    console.log(this.isCheckIn);
-
   }
+
+
+
   changeCancel() {
     this.isChangeSeat = !this.isChangeSeat;
   }
+
+
   checkSeat() {
     this.isChangeSeat = !this.isChangeSeat;
     this.countBookedSeat();
   }
+
+
   countBookedSeat() {
-
-
-    this.allPassenger?.find((a) => {
-      this.totalSeat?.find((b) => {
+    this.allPassenger.find((a) => {
+      this.totalSeat.find((b) => {
         if (a.seatno === b) {
           const index: number = this.reaminingSeat.indexOf(b);
-          console.log(index);
-
           if (index !== -1) {
             this.reaminingSeat.splice(index, 1);
           }
-
-
         }
-
       })
     })
-
   }
 
   changeSeat() {
-    console.log(this.updateedSeat);
-    let index = this.findIndex(this.flight?.passengers, this.passenger?.cId);
-
-
-
-   
-      this.flight.passengers[index].seatno = this.updateedSeat;
-   
-    
+    let index = this.findIndex(this.flight.passengers, this.passenger.customername, this.passenger.cId);
+    this.flight.passengers[index].seatno = this.updateedSeat;
+    this.flight.passengers[index].checkenin = true;
     let x = this.updateTable();
     this.isChangeSeat = false;
     this.router.navigate(['../'], { relativeTo: this.route });
@@ -136,40 +119,31 @@ export class PassengerDetailComponent implements OnInit {
 
 
   checkIn() {
-    let index = this.findIndex(this.flight?.passengers, this.passenger?.cId);
-    console.log(this.isCheckIn);
-
-
-
-    this.flight.passengers[index].checkenin = this.isCheckIn != null ? this.isCheckIn : this.passenger?.checkenin;
-    console.log(this.flight);
-
+    let index = this.findIndex(this.flight.passengers, this.passenger.customername, this.passenger.cId);
+    this.flight.passengers[index].checkenin = this.isCheckIn != null ? this.isCheckIn : this.passenger.checkenin;
     let x = this.updateTable();
-
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 
-  findIndex(array, id) {
-    for (let index = 0; index < array?.length; index++) {
-      if (id == array[index].cId) {
+
+
+  findIndex(array: Passenger[], name: string, id: number) {
+    for (let index = 0; index < array.length; index++) {
+      if (name === array[index].customername && id == array[index].cId) {
         return index;
       }
 
     }
   }
+
+
+
   updateTable() {
-    this.http.put<Flight>("http://localhost:3000/planes/" + this.flight?.id, this.flight).subscribe((data) => {
-      this.flight = data;
-      console.log(this.flight);
-
-
-
-
-
-    })
-
-
-
+    this.service.update(this.flight.id, this.flight)
+      .subscribe((data) => {
+        this.flight = data;
+        this.service.setSelectedFlight(this.flight)
+      })
     return true;
   }
 }
@@ -183,34 +157,3 @@ export class seatsBook {
   seatNaming: String;
   booked: String[]
 }
-// export class passengerData {
-//   cId: Number;
-//   customername: String;
-//   checkenin: boolean;
-//   passport: String;
-//   address: String;
-//   DOB: String;
-//   category: String;
-//   ancillayService: String[];
-//   action: String;
-//   seatno: String;
-//   meal: String;
-//   shop: String[]
-// }
-// export class Flight {
-//   id: Number;
-//   planename: String;
-//   planeno: String;
-//   departure: String;
-//   departureFrom: String;
-//   arrivalTo: String;
-//   arrival: String;
-//   duration: String;
-//   price: Number;
-//   ancillaryServices: String[];
-//   specialMeals: String[];
-//   shoppingItems: String[];
-//   image: String;
-
-//   passengers: passengerData[];
-// }

@@ -10,35 +10,35 @@ import { LoginComponent } from './login';
 
 const routes: Routes = [
   {
-      path: '',
-      component: HomeComponent,
-      canActivate: [AuthGuard]
+    path: '',
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   },
 
 
   {
     path: 'checkin',
-    loadChildren: () =>import ('../checkin/checkin.module').then(m => m.CheckinModule),
+    loadChildren: () => import('../checkin/checkin.module').then(m => m.CheckinModule),
     // component: AdminComponent,
     canActivate: [AuthGuard]
-},
+  },
 
-{
-  path: 'inflight',
-  loadChildren: () =>import ('../inflight/inflight.module').then(m => m.InflightModule),
-  // component: AdminComponent,
-  canActivate: [AuthGuard]
-},
   {
-      path: 'admin',
-      loadChildren: () =>import ('../admin/admin.module').then(m => m.AdminModule),
-      // component: AdminComponent,
-      canActivate: [AuthGuard],
-      data: { roles: [Role.Admin] }
+    path: 'inflight',
+    loadChildren: () => import('../inflight/inflight.module').then(m => m.InflightModule),
+    // component: AdminComponent,
+    canActivate: [AuthGuard]
   },
   {
-      path: 'login',
-      component: LoginComponent
+    path: 'admin',
+    loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule),
+    // component: AdminComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Role.Admin] }
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
 
   // otherwise redirect to home

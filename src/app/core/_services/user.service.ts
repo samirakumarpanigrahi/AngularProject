@@ -11,13 +11,16 @@ export class UserService {
 socialUser:SocialUser;
 
     getSocialUser(): any {
-        console.log(this.socialUser);
-        
+  
      return this.socialUser;
     }
+
+
     setSocialUser(social: SocialUser) {
        this.socialUser=social;
     }
+
+    
     constructor(private http: HttpClient) { }
 
     getAll() {

@@ -14,13 +14,13 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({
-  declarations: [FlightListComponent, DisplayFlightComponent, PassengerDetailComponent,  NextFlightPipe],
+  declarations: [FlightListComponent, DisplayFlightComponent, PassengerDetailComponent, NextFlightPipe],
   imports: [
     CommonModule,
     CheckinRoutingModule,
     DemoMaterialModule,
     SharedModule,
     NgxSpinnerModule
-  ],exports:[NextFlightPipe] 
+  ], exports: [NextFlightPipe]
 })
 export class CheckinModule { }

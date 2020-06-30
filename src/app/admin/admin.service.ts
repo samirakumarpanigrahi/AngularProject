@@ -1,34 +1,46 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Flight } from '../core/_models/flight';
+import { Observable } from 'rxjs';
+import { Passenger } from '../core/_models/passenger';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
-  
+ 
 
 
-  selectedFlight:any;
-  EditPassenger:any;
+  selectedFlight:Flight;
+  EditPassenger:Passenger;
 
+  constructor(private httpClient: HttpClient) { }
 
   getSelectedFlight()
   {
     return this.selectedFlight;
   }
-  setSelectedFlight(data: any) {
+
+
+  setSelectedFlight(data: Flight) {
     this.selectedFlight=data;
   }
 
-  constructor(private httpClient: HttpClient) { }
+ 
 
 
-  get()
+  get():Observable<Flight[]>
   {
-    return this.httpClient.get("http://localhost:3000/planes");
+    return this.httpClient.get<Flight[]>("http://localhost:3000/planes");
   }
 
-  SetEditedPassenger(data: any) {
+
+  update(id: number, flight: Flight):Observable<Flight> {
+    return this.httpClient.put<Flight>("http://localhost:3000/planes/" + id,flight) 
+  }
+  
+
+  SetEditedPassenger(data: Passenger) {
     this.EditPassenger=data;
   }
 
@@ -36,4 +48,6 @@ export class AdminService {
   {
     return this.EditPassenger;
   }
+
+  
 }

@@ -1,112 +1,114 @@
 <mat-tab-group mat-align-tabs="center" color="accent">
     <mat-tab label="Passenger">
-        <mat-card class="example-card">
+       
             <mat-form-field>
                 <mat-label>Filter</mat-label>
                 <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mindtree">
             </mat-form-field>
-
-            <div class="mat-elevation-z8">
-                <table mat-table [dataSource]="dataSource" #mytable matSort>
+            <mat-card class="example-card mat-elevation-z8">
+           
+                <mat-table [dataSource]="dataSource" #mytable matSort>
 
                     <!-- ID Column -->
                     <ng-container matColumnDef="cId">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
-                        <td mat-cell *matCellDef="let row"> {{row.cId}} </td>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="Id"> {{row.cId}} </mat-cell>
                     </ng-container>
 
 
                     <ng-container matColumnDef="address">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
-                        <td mat-cell *matCellDef="let row"> {{row.address}} </td>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Address </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="Address"> {{row.address}} </mat-cell>
                     </ng-container>
 
                     <!-- Progress Column -->
                     <ng-container matColumnDef="customername">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                        <td mat-cell *matCellDef="let row"> {{row.customername}} </td>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="Name"> {{row.customername}} </mat-cell>
                     </ng-container>
 
                     <!-- Name Column -->
                     <ng-container matColumnDef="seatno">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Seat No </th>
-                        <td mat-cell *matCellDef="let row"> {{row.seatno}} </td>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Seat No </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="Seat"> {{row.seatno}} </mat-cell>
                     </ng-container>
 
                     <!-- Color Column -->
                     <ng-container matColumnDef="checkenin">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Checkenin </th>
-                        <td mat-cell *matCellDef="let row"> {{row.checkenin}} </td>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Checkenin </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="Checkin"> {{row.checkenin}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="passport">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Passport </th>
-                        <td mat-cell *matCellDef="let row"> {{row.passport}} </td>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Passport </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="Passport"> {{row.passport}} </mat-cell>
                     </ng-container>
 
 
 
 
                     <ng-container matColumnDef="DOB">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> DOB </th>
-                        <td mat-cell *matCellDef="let row"> {{row.DOB | date:'shortDate'}} </td>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> DOB </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="DOB"> {{row.DOB | date:'shortDate'}} </mat-cell>
                     </ng-container>
 
 
 
 
                     <ng-container matColumnDef="category">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
-                        <td mat-cell *matCellDef="let row"> {{row.category}} </td>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Category </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="Category"> {{row.category}} </mat-cell>
                     </ng-container>
 
 
                     <ng-container matColumnDef="ancillayService">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> AncillayService </th>
-                        <td mat-cell *matCellDef="let row"> {{row.ancillayService}} </td>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> AncillayService </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="Ancillay"> {{row.ancillayService}} </mat-cell>
                     </ng-container>
 
 
                     <ng-container matColumnDef="meal">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Meal </th>
-                        <td mat-cell *matCellDef="let row"> {{row.meal}} </td>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Meal </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="Meal"> {{row.meal}} </mat-cell>
                     </ng-container>
 
 
                     <ng-container matColumnDef="shop">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Shop </th>
-                        <td mat-cell *matCellDef="let row"> {{row.shop}} </td>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Shop </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="Shop"> {{row.shop}} </mat-cell>
                     </ng-container>
 
 
                     <ng-container matColumnDef="action">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-                        <td mat-cell *matCellDef="let row" class="action-link">
-                            <button mat-icon-button color="accent" (click)="openDialog('Ancillay',row)"><mat-icon matTooltip="AncillayService" color="accent">edit</mat-icon></button>
-                            <button mat-icon-button color="accent" (click)="openDialog('Meal',row)"><mat-icon matTooltip="Meal" color="accent">local_dining</mat-icon></button>
-                            <button mat-icon-button color="accent" (click)="openDialog('Shop',row)"><mat-icon matTooltip="Shoping" color="accent">store</mat-icon></button>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="Action" class="action-link">
+                            <button rel="apple-touch-icon" mat-icon-button color="accent" (click)="openDialog('Ancillay',row)"><mat-icon matTooltip="AncillayService" color="accent">edit</mat-icon></button>
+                            <button rel="apple-touch-icon" mat-icon-button color="accent" (click)="openDialog('Meal',row)"><mat-icon matTooltip="Meal" color="accent">local_dining</mat-icon></button>
+                            <button rel="apple-touch-icon" mat-icon-button color="accent" (click)="openDialog('Shop',row)"><mat-icon matTooltip="Shoping" color="accent">store</mat-icon></button>
 
-                        </td>
+                        </mat-cell>
                     </ng-container>
 
 
 
 
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-                    </tr>
-                </table>
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;">
+                    </mat-row>
+                </mat-table>
 
                 <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-            </div>
+            
 
 
         </mat-card>
     </mat-tab>
     <mat-tab label="Seat Layout">
-        <!-- <app-meal-map [seatsLayout]="seatsLayout"></app-meal-map> -->
-        <app-seat-lay-out [seatsLayout]="seatsLayout" [flight]="flight" [type]='mealMap'></app-seat-lay-out>
-        <router-outlet></router-outlet>
+        <div *ngIf="isUpdatedFlight">
+            <app-seat-lay-out [seatsLayout]="seatsLayout" [flight]="flight" [type]='mealMap'></app-seat-lay-out>
+            <router-outlet></router-outlet>
+        </div>
+
     </mat-tab>
 
 </mat-tab-group>
