@@ -6,8 +6,8 @@ UserId:samir,
 Password:samir
 
 For Admin
-UserId:mindtree,
-Password:mindtree
+UserId:admin,
+Password:admin
 
 ->Checkin
 There are upcoming flights 
